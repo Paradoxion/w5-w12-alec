@@ -1,18 +1,30 @@
 import React, { useState } from 'react'
+import { history } from '../redux'
+
 import Head from './head'
-// import wave from '../assets/images/wave.jpg'
 
 const Home = () => {
-  const [counter, setCounterNew] = useState(0)
-
+  const [value, setValue] = useState('')
+  const onChange = (e) => { setValue(e.target.value)}
   return (
     <div>
       <Head title="Hello" />
-      <img alt="wave" src="images/wave.jpg" />
-      <button type="button" onClick={() => setCounterNew(counter + 1)}>
-        updateCounter
-      </button>
-      <div> Hello World Dashboard {counter} </div>
+      <div className="flex items-center justify-center h-screen">
+        <div className="bg-indigo-800 text-red font-bold rounded-lg border shadow-lg p-10">
+          <input id="input-field" type="text" value={value} onChange={onChange} />
+        </div>
+        <div className="bg-indigo-800 text-red font-bold rounded-lg border shadow-lg p-10">
+          <button
+            id="search-button"
+            type="button"
+            onClick={() => {
+              history.push(value)
+            }}
+          >
+            Search
+          </button>
+        </div>
+      </div>
     </div>
   )
 }
